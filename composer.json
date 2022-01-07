@@ -1,0 +1,9 @@
+{
+    "name": "ai1/php-tracker",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\": "."
+        }
+    }
+}
