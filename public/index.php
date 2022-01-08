@@ -11,7 +11,7 @@ $config = [
     "db" => [
         "dsn" => "mysql:host=localhost;port=3306;dbname=tracker",
         "user" => "root",
-        "password" => "asdf1235"
+        "password" => ""
     ]
 ];
 
@@ -30,5 +30,6 @@ $app->router->get('/logout', [SiteController::class, 'logout']);
 $app->router->get('/contact', [SiteController::class, 'contact']);
 $app->router->get('/about', [AboutController::class, 'index']);
 $app->router->get('/profile', [SiteController::class, 'profile']);
+$app->router->get('/timer', [SiteController::class, 'timer']);
 
 $app->run();

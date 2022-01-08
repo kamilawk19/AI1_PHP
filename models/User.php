@@ -65,6 +65,11 @@ class User extends UserModel
         return $this->firstname . ' ' . $this->lastname;
     }
 
+    public function getDisplayFirstName(): string
+    {
+        return $this->firstname;
+    }
+
     public static function primaryKey(): string
     {
         return parent::primaryKey();

@@ -15,6 +15,7 @@ class SiteController extends Controller
     public function __construct()
     {
         $this->registerMiddleware(new AuthMiddleware(['profile']));
+        $this->registerMiddleware(new AuthMiddleware(['timer']));
     }
 
     public function home()
@@ -72,5 +73,10 @@ class SiteController extends Controller
     public function profile()
     {
         return $this->render('profile');
+    }
+
+    public function timer()
+    {
+        return $this->render('timer');
     }
 }

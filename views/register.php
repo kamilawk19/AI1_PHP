@@ -1,8 +1,10 @@
 <?php
 /** @var $model \app\core\Model */
+/** @var $this \app\core\View */
 
 use app\core\form\Form;
 
+$this->title = 'Contact';
 $form = new Form();
 ?>
 

@@ -1,10 +1,11 @@
 <?php
 
 /** @var $model \app\models\LoginForm */
-
+/** @var $this \app\core\View */
 use app\core\form\Form;
-
+$this->title = 'Login';
 ?>
+
 
 <h1>Login</h1>
 
