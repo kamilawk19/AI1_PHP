@@ -8,6 +8,7 @@ use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
+use app\models\TimeRecordModel;
 use app\models\User;
 
 class SiteController extends Controller
@@ -75,8 +76,20 @@ class SiteController extends Controller
         return $this->render('profile');
     }
 
-    public function timer()
+    public function timer(Request $request)
     {
+        if ($request->isPost())
+        {
+            $timeRecord = new TimeRecordModel();
+            $timeRecord->loadData($request->getBody());
+            if($timeRecord->addRecord())
+            {
+                Application::$app->response->redirect('/timer');
+            }
+
+
+
+        }
         return $this->render('timer');
     }
 }

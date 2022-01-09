@@ -31,5 +31,6 @@ $app->router->get('/contact', [SiteController::class, 'contact']);
 $app->router->get('/about', [AboutController::class, 'index']);
 $app->router->get('/profile', [SiteController::class, 'profile']);
 $app->router->get('/timer', [SiteController::class, 'timer']);
+$app->router->post('/timer', [SiteController::class, 'timer']);
 
 $app->run();

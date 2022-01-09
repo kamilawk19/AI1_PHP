@@ -6,14 +6,15 @@ $this->title = 'Timer';
 ?>
 
 <h1>Timer</h1>
-
-<div id="timer">
-    <textarea placeholder="Nad czym pracujesz?"></textarea>
-    <button id="controler" type="button" style="width: 100px; height: 30px;">Start/Stop</button>
-    <button id="save" disabled="disabled" type="button" style="width: 100px; height: 30px;">Save</button>
-    <div id="time" style="background-color: antiquewhite; width: 100px; height: 20px; text-align: center;">00:00:00</div>
-</div>
-
+<form action="" method="post">
+    <div id="timer">
+        <input type="text" name="task" placeholder="Nad czym pracujesz?"></input>
+        <button id="controler" type="button" style="width: 100px; height: 30px;">Start/Stop</button>
+        <button id="save" type="submit" disabled="disabled" type="button" style="width: 100px; height: 30px;">Save</button>
+        <div id="time" style="background-color: antiquewhite; width: 100px; height: 20px; text-align: center;">00:00:00</div>
+        <input id="timeToSend" type="hidden", name="time"/>
+    </div>
+</form>
 <!--<script src="../scripts/timer.js"></script> error -->
 <script>
     function buildTimer() {
@@ -50,10 +51,11 @@ $this->title = 'Timer';
                 timeout = setTimeout(step, Math.max(0, that.interval - drift));
             }
         }
-
+        let hidden = document.querySelector('#timeToSend')
         var doWork = function () {
             sec_num++;
             renderTime();
+            hidden.value = divForTime.textContent;
         };
 
         return new AdjustingInterval(doWork, 1000);

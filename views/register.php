@@ -22,5 +22,5 @@ $form = new Form();
     <?php echo $form->field($model, 'email') ?>
     <?php echo $form->field($model, 'password')->passwordField() ?>
     <?php echo $form->field($model, 'passwordConfirm')->passwordField() ?>
-    <button class="btn btn-success">Submit</button>
+    <button>Submit</button>
 <?php Form::end() ?>
