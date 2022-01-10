@@ -1,8 +1,10 @@
 <?php
 /** @var $model \app\core\Model */
+/** @var $this \app\core\View */
 
 use app\core\form\Form;
 
+$this->title = 'Contact';
 $form = new Form();
 ?>
 
@@ -20,5 +22,5 @@ $form = new Form();
     <?php echo $form->field($model, 'email') ?>
     <?php echo $form->field($model, 'password')->passwordField() ?>
     <?php echo $form->field($model, 'passwordConfirm')->passwordField() ?>
-    <button class="btn btn-success">Submit</button>
+    <button>Submit</button>
 <?php Form::end() ?>
