@@ -4,7 +4,7 @@
 
 use app\core\form\Form;
 
-$this->title = 'Contact';
+$this->title = 'Registration';
 $form = new Form();
 ?>
 

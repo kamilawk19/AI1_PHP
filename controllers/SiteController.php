@@ -17,6 +17,9 @@ class SiteController extends Controller
     {
         $this->registerMiddleware(new AuthMiddleware(['profile']));
         $this->registerMiddleware(new AuthMiddleware(['timer']));
+        $this->registerMiddleware(new AuthMiddleware(['projects']));
+        $this->registerMiddleware(new AuthMiddleware(['clients']));
+        $this->registerMiddleware(new AuthMiddleware(['team']));
     }
 
     public function home()
@@ -91,5 +94,20 @@ class SiteController extends Controller
 
         }
         return $this->render('timer');
+    }
+
+    public function clients()
+    {
+        return $this->render('clients');
+    }
+
+    public function projects()
+    {
+        return $this->render('projects');
+    }
+
+    public function team()
+    {
+        return $this->render('team');
     }
 }

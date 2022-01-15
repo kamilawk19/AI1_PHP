@@ -32,5 +32,11 @@ $app->router->get('/about', [AboutController::class, 'index']);
 $app->router->get('/profile', [SiteController::class, 'profile']);
 $app->router->get('/timer', [SiteController::class, 'timer']);
 $app->router->post('/timer', [SiteController::class, 'timer']);
+$app->router->get('/clients', [SiteController::class, 'clients']);
+$app->router->post('/clients', [SiteController::class, 'clients']);
+$app->router->get('/team', [SiteController::class, 'team']);
+$app->router->post('/team', [SiteController::class, 'team']);
+$app->router->get('/projects', [SiteController::class, 'projects']);
+$app->router->post('/projects', [SiteController::class, 'projects']);
 
 $app->run();

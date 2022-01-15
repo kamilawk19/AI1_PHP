@@ -42,6 +42,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/projects">
+                        Projects
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clients">
+                        Clients
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/team">
+                        Team
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/profile">
                         Profile
                     </a>
