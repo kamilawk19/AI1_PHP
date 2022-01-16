@@ -7,9 +7,13 @@ use app\core\Controller;
 use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
+use app\models\Client;
 use app\models\LoginForm;
+use app\models\Team;
 use app\models\TimeRecordModel;
 use app\models\User;
+use app\models\UserClient;
+use app\models\UserTeam;
 
 class SiteController extends Controller
 {
@@ -17,6 +21,9 @@ class SiteController extends Controller
     {
         $this->registerMiddleware(new AuthMiddleware(['profile']));
         $this->registerMiddleware(new AuthMiddleware(['timer']));
+        $this->registerMiddleware(new AuthMiddleware(['projects']));
+        $this->registerMiddleware(new AuthMiddleware(['clients']));
+        $this->registerMiddleware(new AuthMiddleware(['team']));
     }
 
     public function home()
@@ -86,10 +93,54 @@ class SiteController extends Controller
             {
                 Application::$app->response->redirect('/timer');
             }
-
-
-
         }
         return $this->render('timer');
+    }
+
+    public function clients(Request $request)
+    {
+        if ($request->isPost())
+        {
+            $clientRecord = new Client();
+            $userClientRecord = new UserClient();
+            $clientRecord->loadData($request->getBody());
+            if($clientRecord->addRecord())
+            {
+                $db = \app\core\Application::$app->db;
+                $stm = $db->pdo->prepare("SELECT client_id FROM clients WHERE name = ?");
+                $stm->bindValue(1, $clientRecord->name);
+                $stm->execute();
+                $id = $stm->fetch()["client_id"];
+                $userClientRecord->client_id = $id;
+                if($userClientRecord->addRecord()) {
+                    Application::$app->response->redirect('/clients');
+                }
+            }
+        }
+        return $this->render('clients');
+    }
+
+    public function team(Request $request)
+    {
+        if ($request->isPost())
+        {
+            $teamRecord = new Team();
+            $userTeamRecord = new UserTeam();
+            $teamRecord->loadData($request->getBody());
+
+            if($teamRecord->addRecord())
+            {
+                $userTeamRecord->team_name = $teamRecord->name;
+                if($userTeamRecord->addRecord()) {
+                    Application::$app->response->redirect('/team');
+                }
+            }
+        }
+        return $this->render('team');
+    }
+
+    public function projects()
+    {
+        return $this->render('projects');
     }
 }

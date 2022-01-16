@@ -1,21 +1,9 @@
 <?php
-/**
- * User: TheCodeholic
- * Date: 7/9/2020
- * Time: 7:05 AM
- */
 
 namespace app\core\form;
 
-
 use app\core\Model;
 
-/**
- * Class Form
- *
- * @author  Zura Sekhniashvili <zurasekhniashvili@gmail.com>
- * @package core\form
- */
 class Form
 {
     public static function begin($action, $method, $options = [])

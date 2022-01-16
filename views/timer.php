@@ -1,6 +1,9 @@
 <?php
 /** @var $this \app\core\View */
 
+use app\core\Application;
+
+require_once Application::$ROOT_DIR . '/scripts/renderUserHistory.php';
 $this->title = 'Timer';
 
 ?>
@@ -15,8 +18,17 @@ $this->title = 'Timer';
         <input id="timeToSend" type="hidden", name="time"/>
     </div>
 </form>
+
+<h1>History</h1>
+<?php
+    renderHistory();
+?>
+<div id="history">
+</div>
+
+
 <!--<script src="../scripts/timer.js"></script> error -->
-<script>
+<script type="text/javascript"> // timer.js
     function buildTimer() {
         /**
          * Self-adjusting interval to account for drifting
@@ -104,3 +116,4 @@ $this->title = 'Timer';
     let divForTime = document.querySelector('#time');
 
 </script>
+
