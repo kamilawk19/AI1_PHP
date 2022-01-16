@@ -1,6 +1,7 @@
 <?php
 
 use app\controllers\AboutController;
+use app\controllers\AdminPanelController;
 use app\controllers\SiteController;
 use app\core\Application;
 
@@ -17,9 +18,9 @@ $config = [
 
 $app = new Application(dirname(__DIR__), $config);
 
-$app->on(Application::EVENT_BEFORE_REQUEST, function() {
-    echo "Before request from second installation";
-});
+//$app->on(Application::EVENT_BEFORE_REQUEST, function() {
+//    echo "Before request from second installation";
+//});
 
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/register', [SiteController::class, 'register']);
@@ -38,5 +39,6 @@ $app->router->get('/team', [SiteController::class, 'team']);
 $app->router->post('/team', [SiteController::class, 'team']);
 $app->router->get('/projects', [SiteController::class, 'projects']);
 $app->router->post('/projects', [SiteController::class, 'projects']);
+$app->router->get('/adminPanel', [AdminPanelController::class, 'adminPanel']);
 
 $app->run();

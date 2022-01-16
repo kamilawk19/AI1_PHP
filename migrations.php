@@ -9,10 +9,9 @@ $config = [
     "db" => [
         "dsn" => "mysql:host=localhost;port=3306;dbname=tracker",
         "user" => "root",
-        "password" => ""
+        "password" => "asdf1235"
     ]
 ];
-
 $app = new Application(__DIR__, $config);
 
 $app->db->applyMigrations();

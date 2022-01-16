@@ -1,7 +1,6 @@
 <?php
 /** @var $this \app\core\View */
 
-
 use app\core\Application;
 
 $this->title = 'Home page';
