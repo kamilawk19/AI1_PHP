@@ -49,12 +49,27 @@ class Application
         return !self::$app->user;
     }
 
+    public static function isAdmin()
+    {
+        if(self::$app->user === null) {
+            return false;
+        }
+        $roles_array = Application::$app->session->get('roles');
+
+        if(in_array('admin', $roles_array)) {
+            return false;
+        }
+        return true;
+    }
+
     public function login(UserModel $user)
     {
         $this->user = $user;
         $primaryKey = $user->primaryKey();
         $value = $user->{$primaryKey};
         Application::$app->session->set('user', $value);
+        $roles_array = explode(",", $user->getRoles());
+        Application::$app->session->set('roles', $roles_array);
 
         return true;
     }
@@ -63,6 +78,7 @@ class Application
     {
         $this->user = null;
         self::$app->session->remove('user');
+        self::$app->session->remove('roles');
     }
 
     public function run()

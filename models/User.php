@@ -18,6 +18,7 @@ class User extends UserModel
     public int $status = self::STATUS_INACTIVE;
     public string $password = '';
     public string $passwordConfirm = '';
+    public string $roles = '';
 
     public static function tableName(): string
     {
@@ -26,7 +27,7 @@ class User extends UserModel
 
     public function attributes(): array
     {
-        return ['firstname', 'lastname', 'email', 'password', 'status'];
+        return ['firstname', 'lastname', 'email', 'password', 'status', 'roles'];
     }
 
     public function labels(): array
@@ -57,6 +58,7 @@ class User extends UserModel
     {
         $this->status = self::STATUS_INACTIVE;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->roles = 'user';
         return parent::save();
     }
 
@@ -68,6 +70,11 @@ class User extends UserModel
     public function getDisplayFirstName(): string
     {
         return $this->firstname;
+    }
+
+    public function getRoles(): string
+    {
+        return $this->roles;
     }
 
     public static function primaryKey(): string
