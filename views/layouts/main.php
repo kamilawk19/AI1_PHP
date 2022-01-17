@@ -29,13 +29,13 @@
     </div>
     
     <?php else: ?>
-        <ul">
+        <ul class="nav__links">
             <li><a href="/timer">Timer</a></li>
             <li><a href="/projects">Projects</a></li>
             <li><a href="/clients">Clients</a></li>
             <li><a href="/team">Team</a></li>
             <li><a href="/profile">Profile</a></li>
-            <li><a href="/logout">Welcome <?php echo Application::$app->user->getDisplayName() ?> (Logout)</a></li>
+            <li><a a class="cta" href="/logout">Logout</a></li>
         </ul>
     <?php endif; ?>
     </header>
