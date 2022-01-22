@@ -1,0 +1,183 @@
+body {
+    --color-primary: #AC87CC;
+    --color-primary-dark: #9464be;
+    --border-radius: 20px;
+
+    margin: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background: url(./background.jpg);
+    background-size: cover;
+    font-family: "Montserrat", sans-serif;
+}
+
+.box {
+    height: 100vh;
+    display: flex;
+}
+
+.container {
+    width: 400px;
+    max-width: 400px;
+    margin: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    background: #ffffff;
+    font: 500 1rem 'Quicksand', sans-serif;
+}
+
+.form__title {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form__input-group {
+    margin-bottom: 1rem;
+}
+
+.form__button {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #ffffff;
+    border: none;
+    border-radius: var(--border-radius);
+    outline: none;
+    cursor: pointer;
+    background: var(--color-primary);
+}
+
+header {
+    box-sizing: border-box;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    background-color: #2C2C34;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    cursor: pointer;
+    size: 10px;
+}
+
+.nav__links a,
+.cta{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+.nav__links {
+    list-style: none;
+    display: flex;
+}
+
+.nav__links li {
+    padding: 0px 20px;  
+}
+
+.nav__links li a {
+    transition: color 0.3s ease 0s;
+}
+
+.nav__links li a:hover {
+    color: #AC87CC;
+}
+
+.cta {
+    padding: 9px 25px;
+    background-color: #AC87CC;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease 0s;
+    margin: 10px;
+}
+
+.cta:hover {
+    background-color: #9464be;
+}
+
+.css-suepxw-CardWrapper {
+    top: -20px;
+    left: 0;
+    position: absolute;
+    width: 460px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 70px);
+}
+
+.css-kq2csx-Content {
+    margin: 0 auto;
+    padding: 30px 10px;
+    text-align: center;
+}
+
+.css-zp8wlk-H2 {
+    color: #2C2C34;
+}
+
+.css-wfrw7v-Root {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.css-18r4pqz-WhyTrackIconWrapper{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+img{
+    width: 80px;
+    margin: 25px;
+}
+
+.css-p7f5vz-Text{
+    width: 400px;
+}
+
+.right{
+    margin-right: 0;
+}
+
+.left{
+    margin-left: 0;
+}
+
+.center{
+    width: 100px;
+}
+
+.text_err
+{
+    color: darkred;
+    font-size: 20px;
+}
+
+.ddl
+{
+    display: block;
+}
+
+.project_record {
+    padding: 10px;
+}
+
+.project_rec_col
+{
+    display: inline-block;
+    border-right: 1px solid #2C2C34;
+}

@@ -4,15 +4,29 @@
 use app\core\Application;
 
 $this->title = 'Clients';
-require_once Application::$ROOT_DIR . '/scripts/renderUserClientsOrTeams.php';
+require_once Application::$ROOT_DIR . '/scripts/renderDbData.php';
 ?>
 
 <h1>Clients</h1>
 <button id="new_form" type="button" style="width: 100px; height: 30px;" value="0">New Client</button>
 <div id="form"></div>
+<?php
+if(isset($error))
+{
+    if ($error == 0)
+    {
+        echo "<p class='text_err'>Nazwa klienta musi składać się przynajmniej z 3 znaków</p>";
+    }
+    if ($error == -1)
+    {
+        echo "<p class='text_err'>Masz już klienta o takiej nazwie!</p>";
+    }
+    unset($error);
+}
+?>
 <h3>clients:</h3>
 <?php
-renderClientsOrTeams('clients');
+renderData('clients');
 ?>
 
 <script type="text/javascript">
@@ -27,7 +41,6 @@ renderClientsOrTeams('clients');
         let name = document.createElement("input");
         let submitButton = document.createElement("button");
         let info = document.createElement("span");
-        info.textContent = "  <-- zrobic walidacje pola";
         name.placeholder = "Entry a name";
         name.type = "text";
         name.name = "name";
