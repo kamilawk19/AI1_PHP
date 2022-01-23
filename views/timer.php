@@ -14,7 +14,14 @@ $this->title = 'Timer';
         <input type="text" name="task" placeholder="Nad czym pracujesz?"></input>
         <button id="controler" type="button" style="width: 100px; height: 30px;">Start/Stop</button>
         <button id="save" type="submit" disabled="disabled" type="button" style="width: 100px; height: 30px;">Save</button>
-        <div id="time" style="background-color: antiquewhite; width: 100px; height: 20px; text-align: center;">00:00:00</div>
+        <div class="timer">
+            <div class="timer_line"></div>
+            <div class="timer_body">
+                <div class="timer_counter" id="time">
+                    00:00:00
+                </div>
+            </div>
+        </div>
         <input id="timeToSend" type="hidden", name="time"/>
     </div>
 </form>
