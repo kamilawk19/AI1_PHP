@@ -30,44 +30,53 @@ function renderData($obiect)
     $nr = 1;
 
     if ($obiect == "projects") {
-        echo "<div class='project_rec_col'>";
+        echo "<div class='history_rec_col'>";
+        echo "<div class='history_record history_record_title'>no</div>";
         foreach ($data as $row) {
-            echo "<div class='project_record'>$nr</div>";
+            echo "<div class='history_record'>$nr</div>";
             $nr++;
         }
         echo "</div>";
-        echo "<div class='project_rec_col'>";
+        echo "<div class='history_rec_col'>";
+        echo "<div class='history_record history_record_title'>project name</div>";
         foreach ($data as $row) {
-            echo "<div class='project_record'>$row[0]</div>";
+            echo "<div class='history_record'>$row[0]</div>";
         }
         echo "</div>";
-        echo "<div class='project_rec_col'>";
+        echo "<div class='history_rec_col'>";
+        echo "<div class='history_record history_record_title'>client</div>";
         foreach ($data as $row) {
             if ($row[1] == null) {
-                echo "<div class='project_record'>---</div>";
+                echo "<div class='history_record'>---</div>";
             } else {
-                echo "<div class='project_record'>$row[1]</div>";
+                $stm2 = $db->pdo->prepare("SELECT name FROM clients WHERE client_id = ?");
+                $stm2->bindValue(1, $row[1]);
+                $stm2->execute();
+                $client_name = $stm2->fetch()["name"];
+                echo "<div class='history_record'>$client_name</div>";
             }
         }
         echo "</div>";
-        echo "<div class='project_rec_col'>";
+        echo "<div class='history_rec_col'>";
+        echo "<div class='history_record history_record_title'>team</div>";
         foreach ($data as $row) {
             if ($row[2] == null) {
-                echo "<div class='project_record'>---</div>";
+                echo "<div class='history_record'>---</div>";
             } else {
-                echo "<div class='project_record'>$row[2]</div>";
+                echo "<div class='history_record'>$row[2]</div>";
             }
         }
         echo "</div>";
-        echo "<div class='project_rec_col'>";
+        echo "<div class='history_rec_col'>";
+        echo "<div class='history_record history_record_title'>status</div>";
         foreach ($data as $row) {
-            echo "<div class='project_record'>$row[3]</div>";
+            echo "<div class='history_record'>$row[3]</div>";
         }
         echo "</div>";
 
     } else {
         foreach ($data as $row) {
-            echo "<div>$nr. $row[0]</div>";
+            echo "<div class='history_record'>$nr. $row[0]</div>";
             $nr++;
         }
     }

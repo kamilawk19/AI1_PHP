@@ -6,28 +6,31 @@ use app\core\Application;
 $this->title = 'Team';
 require_once Application::$ROOT_DIR . '/scripts/renderDbData.php';
 ?>
-
-<h1>Team</h1>
-<button id="new_form" type="button" style="width: 100px; height: 30px;" value="0">New team</button>
-<div id="form"></div>
+<div class="main_content">
+    <h1>Team</h1>
+    <button id="new_form" class="buttons" type="button" value="0">New team</button>
+    <div id="form"></div>
+</div>
 <?php
 if(isset($error))
 {
     if ($error == 0)
     {
-        echo "<p class='text_err'>Nazwa teamu musi składać się przynajmniej z 3 znaków</p>";
+        echo "<p class='text_err'>The team name must be at least 3 characters long</p>";
     }
     if ($error == -1)
     {
-        echo "<p class='text_err'>Team o takiej nazwie już istnieje! Wybierz inną nazwę</p>";
+        echo "<p class='text_err'>A team with that name already exists! Please choose a different name</p>";
     }
     unset($error);
 }
 ?>
-<h3>teams:</h3>
-<?php
-renderData('teams');
-?>
+<h3>Teams:</h3>
+<div class="list">
+    <?php
+    renderData('teams');
+    ?>
+</div>
 <script type="text/javascript">
 
     function showForm()

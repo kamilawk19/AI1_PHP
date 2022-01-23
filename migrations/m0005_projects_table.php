@@ -1,6 +1,6 @@
 <?php
 
-class m0006_projects_table
+class m0005_projects_table
 {
     public function up()
     {

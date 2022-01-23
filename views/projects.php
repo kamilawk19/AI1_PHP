@@ -7,33 +7,35 @@ $this->title = 'Projects';
 require_once Application::$ROOT_DIR . '/scripts/createProjectForm.php';
 require_once Application::$ROOT_DIR . '/scripts/renderDbData.php';
 ?>
-
-<h1>Projects page</h1>
-<button id="new_form" type="button" style="width: 100px; height: 30px;">New project</button>
-<div id="form" style="display: none;">
-    <?php
-    create_form();
-    ?>
+<div class="main_content">
+    <h1>Projects page</h1>
+    <button id="new_form" class="buttons" type="button">New project</button>
+    <div id="form" style="display: none;">
+        <?php
+        create_form();
+        ?>
+    </div>
 </div>
 <?php
 if(isset($error))
 {
     if ($error == 0)
     {
-        echo "<p class='text_err'>Nazwa projekut musi składać się przynajmniej z 3 znaków</p>";
+        echo "<p class='text_err'>The project name must be at least 3 characters long</p>";
     }
     if ($error == -1)
     {
-        echo "<p class='text_err'>Masz już projekt o takiej nazwie!</p>";
+        echo "<p class='text_err'>You already have a project with that name!</p>";
     }
     unset($error);
 }
 ?>
-<h3>projects:</h3>
-<?php
-renderData('projects');
-?>
-
+<h3>Projects:</h3>
+<div class="list">
+    <?php
+    renderData('projects');
+    ?>
+</div>
 <script type="text/javascript">
 
     function showForm()

@@ -1,6 +1,6 @@
 <?php
 
-class m010_add_user_roles
+class m0010_add_user_roles
 {
     public function up()
     {

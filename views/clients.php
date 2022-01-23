@@ -6,28 +6,31 @@ use app\core\Application;
 $this->title = 'Clients';
 require_once Application::$ROOT_DIR . '/scripts/renderDbData.php';
 ?>
-
-<h1>Clients</h1>
-<button id="new_form" type="button" style="width: 100px; height: 30px;" value="0">New Client</button>
-<div id="form"></div>
+<div class="main_content">
+    <h1>Clients</h1>
+    <button id="new_form" class="buttons" type="button" value="0">New Client</button>
+    <div id="form"></div>
+</div>
 <?php
 if(isset($error))
 {
     if ($error == 0)
     {
-        echo "<p class='text_err'>Nazwa klienta musi składać się przynajmniej z 3 znaków</p>";
+        echo "<p class='text_err'>The client name must be at least 3 characters long</p>";
     }
     if ($error == -1)
     {
-        echo "<p class='text_err'>Masz już klienta o takiej nazwie!</p>";
+        echo "<p class='text_err'>You already have a client with that name!</p>";
     }
     unset($error);
 }
 ?>
-<h3>clients:</h3>
-<?php
-renderData('clients');
-?>
+<h3>Clients:</h3>
+<div class="list">
+    <?php
+    renderData('clients');
+    ?>
+</div>
 
 <script type="text/javascript">
 

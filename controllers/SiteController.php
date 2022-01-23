@@ -91,8 +91,19 @@ class SiteController extends Controller
         {
             $timeRecord = new TimeRecordModel();
             $timeRecord->loadData($request->getBody());
+            if($timeRecord->project_id == 0)
+            {
+                $timeRecord->project_id = null;
+            }
             if($timeRecord->addRecord())
             {
+                if($timeRecord->project_id != null) {
+                    $db = \app\core\Application::$app->db;
+                    $stm = $db->pdo->prepare('UPDATE projects SET status = ADDTIME(status, ?) WHERE project_id = ?');
+                    $stm->bindValue(1, $timeRecord->time);
+                    $stm->bindValue(2, $timeRecord->project_id);
+                    $stm->execute();
+                }
                 Application::$app->response->redirect('/timer');
             }
         }
