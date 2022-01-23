@@ -234,6 +234,7 @@ img{
     border-radius: 5px;
     font-size: 16px;
     transition: background-color 0.4s ease-in-out;
+    cursor: pointer;
 }
 
 .buttons:hover
@@ -262,4 +263,45 @@ h3{
     margin: 0 30px;
     margin-top: 20px;
     margin-bottom: 5px;
+}
+
+.team_record
+{
+    padding: 10px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.team_record:hover
+{
+    padding: 10px;
+    background-color: #9464be;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#team_options
+{
+    height: 500px;
+    width: 30%;
+    background-color: #2C2C34;
+    position:absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 10;
+    border: 2px solid #1B1B23;
+    border-radius: 10px;
+}
+
+#exit_button
+{
+    width: 10px;
+    height: 18px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    text-align: center;
 }

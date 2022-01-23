@@ -31,6 +31,7 @@ if(isset($error))
     renderData('teams');
     ?>
 </div>
+
 <script type="text/javascript">
 
     function showForm()
@@ -52,7 +53,40 @@ if(isset($error))
         form.appendChild(submitButton);
         form.appendChild(info);
     }
+
+    function showTeamOptions(e)
+    {
+        let block = document.createElement("div");
+        block.id = "team_options";
+        let exit = document.createElement("button");
+        exit.id = "exit_button";
+        exit.textContent = "X"
+        exit.addEventListener("click", function(){
+            document.body.removeChild(block)
+            for (const team of teams) {
+                team.classList.add("team_record");
+                team.addEventListener('click', showTeamOptions);
+            }
+        })
+        let info = document.createElement("p");
+        info.textContent = "Tutaj ma być zarządzanie teamem, ilośc członków, wyszukiwanie użytkowników w systemie i ich dodawanie. Nie zdążyłem jeszcze tego zrobić";
+        block.appendChild(exit);
+        block.appendChild(info);
+        document.body.appendChild(block);
+
+        for (const team of teams) {
+            team.classList.add("team_record");
+            team.removeEventListener('click', showTeamOptions);
+        }
+    }
+
     let button = document.querySelector('#new_form');
     button.addEventListener('click', showForm, false);
+
+    var teams = document.querySelectorAll(".history_record");
+    for (const team of teams) {
+        team.classList.add("team_record");
+        team.addEventListener('click', showTeamOptions, false);
+    }
 
 </script>
