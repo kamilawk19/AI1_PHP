@@ -4,9 +4,24 @@
 use app\core\Application;
 
 require_once Application::$ROOT_DIR . '/scripts/renderUserHistory.php';
+require_once Application::$ROOT_DIR . '/scripts/createProjectsList.php';
 $this->title = 'Timer';
-
 ?>
+<div class="main_content">
+    <h1>Timer</h1>
+    <form action="" method="post">
+        <div id="timer">
+            <input id="timer_description" type="text" name="task" placeholder="What are you working on?"></input>
+            <?php
+            showProjectsList();
+            ?>
+            <button class="buttons" id="controler" type="button">Start/Stop</button>
+            <button class="buttons" id="save" type="submit" disabled="disabled" type="button">Save</button>
+            <div id="time">00:00:00</div>
+            <input id="timeToSend" type="hidden", name="time"/>
+        </div>
+    </form>
+</div>
 
 <h1>Timer</h1>
 <form action="" method="post">
@@ -26,11 +41,11 @@ $this->title = 'Timer';
     </div>
 </form>
 
-<h1>History</h1>
-<?php
+<h3>History:</h3>
+<div class="list">
+    <?php
     renderHistory();
-?>
-<div id="history">
+    ?>
 </div>
 
 

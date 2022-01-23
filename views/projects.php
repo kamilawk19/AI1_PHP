@@ -1,23 +1,49 @@
 <?php
-/** @var $model \app\core\Model */
 /** @var $this \app\core\View */
-use app\core\form\Form;
+
+use app\core\Application;
 
 $this->title = 'Projects';
+require_once Application::$ROOT_DIR . '/scripts/createProjectForm.php';
+require_once Application::$ROOT_DIR . '/scripts/renderDbData.php';
 ?>
-
-<h1>Projects page</h1>
-<button id="new_project" type="button" style="width: 100px; height: 30px;">New project</button>
-<h3>projects:</h3>
-
+<div class="main_content">
+    <h1>Projects page</h1>
+    <button id="new_form" class="buttons" type="button">New project</button>
+    <div id="form" style="display: none;">
+        <?php
+        create_form();
+        ?>
+    </div>
+</div>
+<?php
+if(isset($error))
+{
+    if ($error == 0)
+    {
+        echo "<p class='text_err'>The project name must be at least 3 characters long</p>";
+    }
+    if ($error == -1)
+    {
+        echo "<p class='text_err'>You already have a project with that name!</p>";
+    }
+    unset($error);
+}
+?>
+<h3>Projects:</h3>
+<div class="list">
+    <?php
+    renderData('projects');
+    ?>
+</div>
 <script type="text/javascript">
 
     function showForm()
     {
-        console.log("xd");
+        let form = document.querySelector('#form');
+        form.style.display = "block";
     }
-
-    let button = document.querySelector('#new_project');
-    button.addEventListener("click", showForm, false);
+    let button = document.querySelector('#new_form');
+    button.addEventListener('click', showForm, false);
 
 </script>

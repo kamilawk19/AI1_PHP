@@ -3,5 +3,6 @@
 
 $this->title = 'Contact';
 ?>
-
-<h1>Contact page</h1>
+<div class="main_content">
+    <h1>Contact page</h1>
+</div>

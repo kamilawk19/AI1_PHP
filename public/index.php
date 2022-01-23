@@ -12,7 +12,7 @@ $config = [
     "db" => [
         "dsn" => "mysql:host=localhost;port=3306;dbname=tracker",
         "user" => "root",
-        "password" => ""
+        "password" => "asdf1235"
     ]
 ];
 

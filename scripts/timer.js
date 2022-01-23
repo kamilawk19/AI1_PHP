@@ -1,4 +1,3 @@
-alert();
 function buildTimer() {
     /**
      * Self-adjusting interval to account for drifting
