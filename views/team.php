@@ -4,16 +4,34 @@
 use app\core\Application;
 
 $this->title = 'Team';
-require_once Application::$ROOT_DIR . '/scripts/renderUserClientsOrTeams.php';
+require_once Application::$ROOT_DIR . '/scripts/renderDbData.php';
 ?>
-
-<h1>Team</h1>
-<button id="new_form" type="button" style="width: 100px; height: 30px;" value="0">New team</button>
-<div id="form"></div>
-<h3>teams:</h3>
+<div class="main_content">
+    <h1>Team</h1>
+    <button id="new_form" class="buttons" type="button" value="0">New team</button>
+    <div id="form"></div>
+</div>
 <?php
-renderClientsOrTeams('teams');
+if(isset($error))
+{
+    if ($error == 0)
+    {
+        echo "<p class='text_err'>The team name must be at least 3 characters long</p>";
+    }
+    if ($error == -1)
+    {
+        echo "<p class='text_err'>A team with that name already exists! Please choose a different name</p>";
+    }
+    unset($error);
+}
 ?>
+<h3>Teams:</h3>
+<div class="list">
+    <?php
+    renderData('teams');
+    ?>
+</div>
+
 <script type="text/javascript">
 
     function showForm()
@@ -26,7 +44,6 @@ renderClientsOrTeams('teams');
         let name = document.createElement("input");
         let submitButton = document.createElement("button");
         let info = document.createElement("span");
-        info.textContent = "  <-- zrobic walidacje pola";
         name.placeholder = "Entry a name";
         name.type = "text";
         name.name = "name";
@@ -36,7 +53,40 @@ renderClientsOrTeams('teams');
         form.appendChild(submitButton);
         form.appendChild(info);
     }
+
+    function showTeamOptions(e)
+    {
+        let block = document.createElement("div");
+        block.id = "team_options";
+        let exit = document.createElement("button");
+        exit.id = "exit_button";
+        exit.textContent = "X"
+        exit.addEventListener("click", function(){
+            document.body.removeChild(block)
+            for (const team of teams) {
+                team.classList.add("team_record");
+                team.addEventListener('click', showTeamOptions);
+            }
+        })
+        let info = document.createElement("p");
+        info.textContent = "Tutaj ma być zarządzanie teamem, ilośc członków, wyszukiwanie użytkowników w systemie i ich dodawanie. Nie zdążyłem jeszcze tego zrobić";
+        block.appendChild(exit);
+        block.appendChild(info);
+        document.body.appendChild(block);
+
+        for (const team of teams) {
+            team.classList.add("team_record");
+            team.removeEventListener('click', showTeamOptions);
+        }
+    }
+
     let button = document.querySelector('#new_form');
     button.addEventListener('click', showForm, false);
+
+    var teams = document.querySelectorAll(".history_record");
+    for (const team of teams) {
+        team.classList.add("team_record");
+        team.addEventListener('click', showTeamOptions, false);
+    }
 
 </script>

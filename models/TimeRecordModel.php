@@ -7,6 +7,7 @@ use app\core\Model;
 class TimeRecordModel extends DbModel
 {
     public int $user_id = 0;
+    public ?int $project_id = NULL;
     public string $task = '';
     public string $time = '';
 
@@ -17,7 +18,7 @@ class TimeRecordModel extends DbModel
 
     public function attributes(): array
     {
-        return ['user_id', 'task', 'time'];
+        return ['user_id', 'project_id', 'task', 'time'];
     }
 
     public function addRecord()

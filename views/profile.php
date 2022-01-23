@@ -3,5 +3,6 @@
 
 $this->title = 'Your profile';
 ?>
-
-<h1>Profile page</h1>
+<div class="main_content">
+    <h1>Profile page</h1>
+</div>

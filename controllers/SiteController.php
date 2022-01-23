@@ -9,10 +9,12 @@ use app\core\Request;
 use app\core\Response;
 use app\models\Client;
 use app\models\LoginForm;
+use app\models\Project;
 use app\models\Team;
 use app\models\TimeRecordModel;
 use app\models\User;
 use app\models\UserClient;
+use app\models\UserProject;
 use app\models\UserTeam;
 
 class SiteController extends Controller
@@ -89,8 +91,19 @@ class SiteController extends Controller
         {
             $timeRecord = new TimeRecordModel();
             $timeRecord->loadData($request->getBody());
+            if($timeRecord->project_id == 0)
+            {
+                $timeRecord->project_id = null;
+            }
             if($timeRecord->addRecord())
             {
+                if($timeRecord->project_id != null) {
+                    $db = \app\core\Application::$app->db;
+                    $stm = $db->pdo->prepare('UPDATE projects SET status = ADDTIME(status, ?) WHERE project_id = ?');
+                    $stm->bindValue(1, $timeRecord->time);
+                    $stm->bindValue(2, $timeRecord->project_id);
+                    $stm->execute();
+                }
                 Application::$app->response->redirect('/timer');
             }
         }
@@ -104,17 +117,24 @@ class SiteController extends Controller
             $clientRecord = new Client();
             $userClientRecord = new UserClient();
             $clientRecord->loadData($request->getBody());
-            if($clientRecord->addRecord())
+            $result = $clientRecord->addRecord();
+
+            if($result === true)
             {
                 $db = \app\core\Application::$app->db;
                 $stm = $db->pdo->prepare("SELECT client_id FROM clients WHERE name = ?");
                 $stm->bindValue(1, $clientRecord->name);
                 $stm->execute();
-                $id = $stm->fetch()["client_id"];
+                $temp = $stm->fetchAll();
+                $id = end($temp)["client_id"];
                 $userClientRecord->client_id = $id;
                 if($userClientRecord->addRecord()) {
                     Application::$app->response->redirect('/clients');
                 }
+            }
+            else
+            {
+                return $this->render('clients', ['error' => $result]);
             }
         }
         return $this->render('clients');
@@ -127,20 +147,56 @@ class SiteController extends Controller
             $teamRecord = new Team();
             $userTeamRecord = new UserTeam();
             $teamRecord->loadData($request->getBody());
-
-            if($teamRecord->addRecord())
+            $result = $teamRecord->addRecord();
+            if($result === true)
             {
                 $userTeamRecord->team_name = $teamRecord->name;
                 if($userTeamRecord->addRecord()) {
                     Application::$app->response->redirect('/team');
                 }
             }
+            else
+            {
+                return $this->render('team', ['error' => $result]);
+            }
         }
         return $this->render('team');
     }
 
-    public function projects()
+    public function projects(Request $request)
     {
+        if ($request->isPost())
+        {
+            $projectRecord = new Project();
+            $userProjectRecord = new UserProject();
+            $projectRecord->loadData($request->getBody());
+            if($projectRecord->client_id == 0)
+            {
+                $projectRecord->client_id = null;
+            }
+            if($projectRecord->team_name == "null")
+            {
+                $projectRecord->team_name = null;
+            }
+            $result = $projectRecord->addRecord();
+            if($result === true)
+            {
+                $db = \app\core\Application::$app->db;
+                $stm = $db->pdo->prepare("SELECT project_id FROM projects WHERE name = ?");
+                $stm->bindValue(1, $projectRecord->name);
+                $stm->execute();
+                $temp = $stm->fetchAll();
+                $id = end($temp)["project_id"];
+                $userProjectRecord->project_id = $id;
+                if($userProjectRecord->addRecord()) {
+                    Application::$app->response->redirect('/projects');
+                }
+            }
+            else
+            {
+                return $this->render('projects', ['error' => $result]);
+            }
+        }
         return $this->render('projects');
     }
 }
