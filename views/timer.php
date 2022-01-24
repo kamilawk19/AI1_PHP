@@ -9,7 +9,7 @@ $this->title = 'Timer';
 ?>
 <div class="main_content">
     <h1>Timer</h1>
-    <form action="" method="post">
+    <form action="" method="post" style="align-items: center;">
         <div id="timer">
             <input id="timer_description" type="text" name="task" placeholder="What are you working on?"></input>
             <?php
@@ -17,35 +17,28 @@ $this->title = 'Timer';
             ?>
             <button class="buttons" id="controler" type="button">Start/Stop</button>
             <button class="buttons" id="save" type="submit" disabled="disabled" type="button">Save</button>
-            <div id="time">00:00:00</div>
+            <div class="timer">
+                <div class="timer_line"></div>
+                <div class="timer_body">
+                    <div class="timer_counter" id="time" style="color: black;">
+                        00:00:00
+                    </div>
+                </div>
+            </div>
             <input id="timeToSend" type="hidden", name="time"/>
         </div>
     </form>
 </div>
 
-<h1>Timer</h1>
-<form action="" method="post">
-    <div id="timer">
-        <input type="text" name="task" placeholder="Nad czym pracujesz?"></input>
-        <button id="controler" type="button" style="width: 100px; height: 30px;">Start/Stop</button>
-        <button id="save" type="submit" disabled="disabled" type="button" style="width: 100px; height: 30px;">Save</button>
-        <div class="timer">
-            <div class="timer_line"></div>
-            <div class="timer_body">
-                <div class="timer_counter" id="time">
-                    00:00:00
-                </div>
-            </div>
+<div class="main_content">
+    <h1>History:</h1>
+    <div class="list">
+        <div style="align-items: center;">
+            <?php
+            renderHistory();
+            ?>
         </div>
-        <input id="timeToSend" type="hidden", name="time"/>
     </div>
-</form>
-
-<h3>History:</h3>
-<div class="list">
-    <?php
-    renderHistory();
-    ?>
 </div>
 
 
