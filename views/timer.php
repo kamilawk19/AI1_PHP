@@ -8,15 +8,17 @@ require_once Application::$ROOT_DIR . '/scripts/createProjectsList.php';
 $this->title = 'Timer';
 ?>
 <div class="main_content">
-    <h1>Timer</h1>
-    <form action="" method="post" style="align-items: center;">
+    <h1>Timer:</h1>
+    <form action="" method="post">
         <div id="timer">
-            <input id="timer_description" type="text" name="task" placeholder="What are you working on?"></input>
-            <?php
-            showProjectsList();
-            ?>
-            <button class="buttons" id="controler" type="button">Start/Stop</button>
-            <button class="buttons" id="save" type="submit" disabled="disabled" type="button">Save</button>
+            <div style="box-sizing: border-box; width: 750px;">
+                <input id="timer_description" type="text" name="task" placeholder="What are you working on?"></input>
+                <?php
+                showProjectsList();
+                ?>
+                <button class="buttons" id="controler" type="button">Start/Stop</button>
+                <button class="buttons" id="save" type="submit" disabled="disabled" type="button">Save</button>
+            </div>
             <div class="timer">
                 <div class="timer_line"></div>
                 <div class="timer_body">
@@ -28,12 +30,9 @@ $this->title = 'Timer';
             <input id="timeToSend" type="hidden", name="time"/>
         </div>
     </form>
-</div>
-
-<div class="main_content">
     <h1>History:</h1>
     <div class="list">
-        <div style="align-items: center;">
+        <div style="margin-left: auto; margin-right: auto;">
             <?php
             renderHistory();
             ?>
