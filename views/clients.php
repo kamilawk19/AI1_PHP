@@ -10,26 +10,26 @@ require_once Application::$ROOT_DIR . '/scripts/renderDbData.php';
     <h1>Clients</h1>
     <button id="new_form" class="buttons" type="button" value="0">New Client</button>
     <div id="form"></div>
-</div>
-<?php
-if(isset($error))
-{
-    if ($error == 0)
-    {
-        echo "<p class='text_err'>The client name must be at least 3 characters long</p>";
-    }
-    if ($error == -1)
-    {
-        echo "<p class='text_err'>You already have a client with that name!</p>";
-    }
-    unset($error);
-}
-?>
-<h3>Clients:</h3>
-<div class="list">
     <?php
-    renderData('clients');
+    if(isset($error))
+    {
+        if ($error == 0)
+        {
+            echo "<p class='text_err'>The client name must be at least 3 characters long</p>";
+        }
+        if ($error == -1)
+        {
+            echo "<p class='text_err'>You already have a client with that name!</p>";
+        }
+        unset($error);
+    }
     ?>
+    <h1>Clients:</h1>
+    <div class="list">
+        <?php
+        renderData('clients');
+        ?>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -44,11 +44,13 @@ if(isset($error))
         let name = document.createElement("input");
         let submitButton = document.createElement("button");
         let info = document.createElement("span");
-        name.placeholder = "Entry a name";
+        name.id = "timer_description";
         name.type = "text";
         name.name = "name";
+        name.placeholder = "Entry a name";
+        submitButton.id = "buttons";
         submitButton.type = "submit";
-        submitButton.textContent = "Create";
+        submitButton.innerHTML = "Create";
         form.appendChild(name);
         form.appendChild(submitButton);
         form.appendChild(info);

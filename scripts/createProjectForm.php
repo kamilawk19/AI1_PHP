@@ -30,9 +30,9 @@ function create_form()
     $rows2 = $stm3->fetchAll();
 
     echo '<form method="post">';
-    echo '<input type="text" name="name" placeholder="Entry a name"><br>';
+    echo '<input id="timer_description" type="text" name="name" placeholder="Entry a name">';
 
-    echo '<select class="ddl" name="client_id">';
+    echo '<select id="ddl_timer" name="client_id">';
     echo '<option value="0">no client</option>';
 
     foreach ($rows as $row) {
@@ -41,7 +41,7 @@ function create_form()
 
     echo '</select>';
 
-    echo '<select class="ddl" name="team_name">';
+    echo '<select id="ddl_timer" name="team_name">';
     echo '<option value="null">no team</option>';
 
     foreach ($rows2 as $row) {
@@ -49,6 +49,6 @@ function create_form()
     }
 
     echo '</select>';
-    echo '<button class="ddl" type="submit">Create</button>';
+    echo '<button class="buttons" type="submit">Create</button>';
     echo '</form>';
 }
