@@ -13,7 +13,7 @@ function renderHistory()
     $nr = 1;
 
     echo "<div class='history_rec_col'>";
-    echo "<div class='history_record history_record_title'>no</div>";
+    echo "<div class='history_record history_record_title'>№</div>";
     foreach ($history as $row) {
         echo "<div class='history_record'>$nr</div>";
         $nr++;
