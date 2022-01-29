@@ -3,6 +3,7 @@
 
 use app\core\Application;
 
+require_once Application::$ROOT_DIR . '/scripts/statistics.php';
 $this->title = 'Home page';
 ?>
 <div class="main_content" style="width: 70%;">
@@ -11,6 +12,26 @@ $this->title = 'Home page';
         <h1>Welcome in</h1> 
         <img src="/css/logoblack.svg" style="width: 500px;">
         <h2 color="#2C2C34">Time tracking for <em>better</em> work, not overwork.</h2>
+    </div>
+	
+	<div class="Content">
+		<h2 color="#2C2C34" style="margin: 5px">Statistics</h2><br>
+		
+		<h3 color="#2C2C34" style="margin: 5px"> How many users are working with us? </h3>
+		<h3 color="#2C2C34" style="margin: 5px"> <em><?php echo statistics("users"); ?></em> </h3><br>
+		
+		<h3 color="#2C2C34" style="margin: 5px"> How much time did users spend on their projects? </h3><br>
+		<h3 color="#2C2C34" style="margin: 5px"> This week </h3>
+		<h3 color="#2C2C34" style="margin: 5px"> <?php echo statistics("week"); ?> </h3><br>
+
+		<h3 color="#2C2C34" style="margin: 5px"> This month </h3>
+		<h3 color="#2C2C34" style="margin: 5px"> <?php echo statistics("month"); ?> </h3><br>
+		
+		<h3 color="#2C2C34" style="margin: 5px"> This year </h3>
+		<h3 color="#2C2C34" style="margin: 5px"> <?php echo statistics("year"); ?> </h3><br>
+		
+		<h3 color="#2C2C34" style="margin: 5px"> From the beginning of our site </h3>
+		<h3 color="#2C2C34" style="margin: 5px"> <?php echo statistics("beginning"); ?> </h3><br>
     </div>
 
 <?php else: ?>
@@ -21,9 +42,6 @@ $this->title = 'Home page';
     </div>
 <?php endif; ?>
 
-    <div class="Content">
-    <h2 color="#2C2C34" style="margin: 5px">Statistics</h2>
-    </div>
 
     <div class="Content">
         <h2 color="#2C2C34">Time Is Money.<br>Clocker. Saves You <em>Both</em></h2>
